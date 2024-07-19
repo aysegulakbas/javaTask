@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application
+spec:
+  replicas: 1  # Veritabanı için bir pod çalıştırın
+  selector:
+    matchLabels:
+      app: java-web-app
+  template:
+    metadata:
+      labels:
+        app: java-web-app
+    spec:
+      containers:
+      - name: java-web-app
+        imagePullPolicy: Always
+        resources:
+            limits: 
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+        image: aysegulakbaas1/java-web-app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: postgresql-config
+              key: database
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgresql-config
+              key: user
+        - name: POSTGRES_URL
+          valueFrom:
+            configMapKeyRef:
+              name: postgresql-config
+              key: url
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-secret
+              key: password
+        - name: POSTGRES_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-secret
+              key: root_password

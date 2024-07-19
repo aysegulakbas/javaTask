@@ -1,0 +1,965 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:46Z"
+    creationTimestamp: "2024-07-07T18:15:08Z"
+    generateName: application-67bd8b5688-
+    labels:
+      app: java-web-app
+      pod-template-hash: 67bd8b5688
+    name: application-67bd8b5688-xxbm2
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: application-67bd8b5688
+      uid: 6f233b75-40d6-4cf5-9a34-ab8759cfb086
+    resourceVersion: "158065"
+    uid: a20754f4-d389-4778-a760-7ae752932f7b
+  spec:
+    containers:
+    - image: aysegulakbaas1/java-web-app:latest
+      imagePullPolicy: Always
+      name: java-web-app
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources:
+        limits:
+          cpu: 250m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 250Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-fhndb
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-fhndb
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:11Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:08Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:19:36Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:19:36Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:08Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://2152d930ac4e3fc79f9f1efc85be569cadc6995eb98c25e96d42db574f857c7f
+      image: aysegulakbaas1/java-web-app:latest
+      imageID: docker-pullable://aysegulakbaas1/java-web-app@sha256:e787596ee7ff5dd392ba636cfba9b0048faaacbdd1a366d043701c7e4a9608ad
+      lastState:
+        terminated:
+          containerID: docker://acb2738959390717b66f47f1e95e4bc842b63e4c2548c403662cab405f565eef
+          exitCode: 137
+          finishedAt: "2024-07-07T18:19:33Z"
+          reason: OOMKilled
+          startedAt: "2024-07-07T18:15:10Z"
+      name: java-web-app
+      ready: true
+      restartCount: 1
+      started: true
+      state:
+        running:
+          startedAt: "2024-07-07T18:19:36Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.50
+    podIPs:
+    - ip: 10.244.0.50
+    qosClass: Burstable
+    startTime: "2024-07-07T18:15:08Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:13Z"
+    creationTimestamp: "2024-07-07T18:15:13Z"
+    generateName: postgresql-5c555db5bd-
+    labels:
+      app: postgresql
+      pod-template-hash: 5c555db5bd
+    name: postgresql-5c555db5bd-8p5pn
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: postgresql-5c555db5bd
+      uid: bef445ed-aeaf-40b5-8d77-f8433bf9b5a2
+    resourceVersion: "157840"
+    uid: 208e4bd2-aa58-4d3d-9b17-7c974c0c85c8
+  spec:
+    containers:
+    - env:
+      - name: POSTGRES_ROOT_PASSWORD
+        value: petclinic
+      - name: POSTGRES_DATABASE
+        value: petclinic
+      - name: POSTGRES_USER
+        value: petclinic
+      - name: POSTGRES_PASSWORD
+        value: petclinic
+      image: postgres
+      imagePullPolicy: Always
+      name: postgresql
+      ports:
+      - containerPort: 5432
+        protocol: TCP
+      resources:
+        limits:
+          cpu: 250m
+          memory: 256Mi
+        requests:
+          cpu: 250m
+          memory: 250Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-fzmv7
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-fzmv7
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:15Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:13Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:15Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:15Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-07-07T18:15:13Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://205128eb612f328c10f8b246ef9efc4bacfcdf2588e81f4ccea91461847018ec
+      image: postgres:latest
+      imageID: docker-pullable://postgres@sha256:0aafd2ae7e6c391f39fb6b7621632d79f54068faebc726caf469e87bd1d301c0
+      lastState: {}
+      name: postgresql
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-07-07T18:15:15Z"
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.0.51
+    podIPs:
+    - ip: 10.244.0.51
+    qosClass: Burstable
+    startTime: "2024-07-07T18:15:13Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"application-service","namespace":"default"},"spec":{"ports":[{"port":80,"protocol":"TCP","targetPort":8080}],"selector":{"app":"java-web-app"}}}
+    creationTimestamp: "2024-07-07T18:08:41Z"
+    name: application-service
+    namespace: default
+    resourceVersion: "157577"
+    uid: 065226e3-1327-4524-bc6a-382ba26946e4
+  spec:
+    clusterIP: 10.96.87.102
+    clusterIPs:
+    - 10.96.87.102
+    externalTrafficPolicy: Cluster
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - nodePort: 32761
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: java-web-app
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2024-07-07T15:31:08Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    name: kubernetes
+    namespace: default
+    resourceVersion: "154964"
+    uid: a5ac3ed4-5532-45f1-ad04-7c71f5d8821c
+  spec:
+    clusterIP: 10.96.0.1
+    clusterIPs:
+    - 10.96.0.1
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 8443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"postgresql","namespace":"default"},"spec":{"ports":[{"port":5432,"protocol":"TCP","targetPort":5432}],"selector":{"app":"postgresql"}}}
+    creationTimestamp: "2024-07-07T15:37:33Z"
+    name: postgresql
+    namespace: default
+    resourceVersion: "156344"
+    uid: 0640be57-bea8-4b05-9cce-472693d5ef6a
+  spec:
+    clusterIP: 10.96.234.130
+    clusterIPs:
+    - 10.96.234.130
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+    selector:
+      app: postgresql
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "5"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"application","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"java-web-app"}},"template":{"metadata":{"labels":{"app":"java-web-app"}},"spec":{"containers":[{"image":"aysegulakbaas1/java-web-app:latest","imagePullPolicy":"Always","name":"java-web-app","ports":[{"containerPort":8080}],"resources":{"limits":{"cpu":"250m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"250Mi"}}}]}}}}
+    creationTimestamp: "2024-07-07T15:37:12Z"
+    generation: 5
+    name: application
+    namespace: default
+    resourceVersion: "158069"
+    uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: java-web-app
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:46Z"
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-07-07T15:37:12Z"
+      lastUpdateTime: "2024-07-07T15:57:49Z"
+      message: ReplicaSet "application-67bd8b5688" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2024-07-07T18:19:36Z"
+      lastUpdateTime: "2024-07-07T18:19:36Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 5
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "2"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"postgresql","namespace":"default"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"postgresql"}},"template":{"metadata":{"labels":{"app":"postgresql"}},"spec":{"containers":[{"env":[{"name":"POSTGRES_ROOT_PASSWORD","value":"petclinic"},{"name":"POSTGRES_DATABASE","value":"petclinic"},{"name":"POSTGRES_USER","value":"petclinic"},{"name":"POSTGRES_PASSWORD","value":"petclinic"}],"image":"postgres","name":"postgresql","ports":[{"containerPort":5432}],"resources":{"limits":{"cpu":"250m","memory":"256Mi"},"requests":{"cpu":"250m","memory":"250Mi"}}}]}}}}
+    creationTimestamp: "2024-07-07T15:37:29Z"
+    generation: 2
+    name: postgresql
+    namespace: default
+    resourceVersion: "157844"
+    uid: 5112de42-0714-4520-b490-d42b2ea7d778
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app: postgresql
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:13Z"
+        creationTimestamp: null
+        labels:
+          app: postgresql
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_ROOT_PASSWORD
+            value: petclinic
+          - name: POSTGRES_DATABASE
+            value: petclinic
+          - name: POSTGRES_USER
+            value: petclinic
+          - name: POSTGRES_PASSWORD
+            value: petclinic
+          image: postgres
+          imagePullPolicy: Always
+          name: postgresql
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2024-07-07T15:37:29Z"
+      lastUpdateTime: "2024-07-07T15:57:15Z"
+      message: ReplicaSet "postgresql-5c555db5bd" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: "2024-07-07T18:15:15Z"
+      lastUpdateTime: "2024-07-07T18:15:15Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    observedGeneration: 2
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "5"
+    creationTimestamp: "2024-07-07T15:57:46Z"
+    generation: 1
+    labels:
+      app: java-web-app
+      pod-template-hash: 67bd8b5688
+    name: application-67bd8b5688
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: application
+      uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+    resourceVersion: "158068"
+    uid: 6f233b75-40d6-4cf5-9a34-ab8759cfb086
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: java-web-app
+        pod-template-hash: 67bd8b5688
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:46Z"
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+          pod-template-hash: 67bd8b5688
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-07-07T15:37:12Z"
+    generation: 2
+    labels:
+      app: java-web-app
+      pod-template-hash: 7648c6dd5c
+    name: application-7648c6dd5c
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: application
+      uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+    resourceVersion: "156402"
+    uid: 6fd7bcb2-ff8a-4a8b-8f0b-656ff9bd4971
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: java-web-app
+        pod-template-hash: 7648c6dd5c
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+          pod-template-hash: 7648c6dd5c
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "4"
+    creationTimestamp: "2024-07-07T15:57:27Z"
+    generation: 2
+    labels:
+      app: java-web-app
+      pod-template-hash: 7b8b6776d7
+    name: application-7b8b6776d7
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: application
+      uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+    resourceVersion: "156599"
+    uid: 6123651c-5fef-41a9-85d6-87954d06822b
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: java-web-app
+        pod-template-hash: 7b8b6776d7
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:27Z"
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+          pod-template-hash: 7b8b6776d7
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "3"
+    creationTimestamp: "2024-07-07T15:56:48Z"
+    generation: 2
+    labels:
+      app: java-web-app
+      pod-template-hash: 97755b6c7
+    name: application-97755b6c7
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: application
+      uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+    resourceVersion: "156552"
+    uid: c7247ae1-90c7-4a8a-af2a-3db559c7e017
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: java-web-app
+        pod-template-hash: 97755b6c7
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:56:48Z"
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+          pod-template-hash: 97755b6c7
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-07-07T15:56:39Z"
+    generation: 2
+    labels:
+      app: java-web-app
+      pod-template-hash: b856bf6b9
+    name: application-b856bf6b9
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: application
+      uid: 032de447-5699-47d9-bd92-de99ede4e6ee
+    resourceVersion: "156448"
+    uid: d61d5086-03e0-46ca-91f4-cb40a9e2ff8c
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: java-web-app
+        pod-template-hash: b856bf6b9
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:56:39Z"
+        creationTimestamp: null
+        labels:
+          app: java-web-app
+          pod-template-hash: b856bf6b9
+      spec:
+        containers:
+        - image: aysegulakbaas1/java-web-app:latest
+          imagePullPolicy: Always
+          name: java-web-app
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    creationTimestamp: "2024-07-07T15:37:29Z"
+    generation: 2
+    labels:
+      app: postgresql
+      pod-template-hash: 5bd67cc545
+    name: postgresql-5bd67cc545
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: postgresql
+      uid: 5112de42-0714-4520-b490-d42b2ea7d778
+    resourceVersion: "156506"
+    uid: 18307078-a1c1-4055-a52b-b7cab4d70ac5
+  spec:
+    replicas: 0
+    selector:
+      matchLabels:
+        app: postgresql
+        pod-template-hash: 5bd67cc545
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: postgresql
+          pod-template-hash: 5bd67cc545
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_ROOT_PASSWORD
+            value: petclinic
+          - name: POSTGRES_DATABASE
+            value: petclinic
+          - name: POSTGRES_USER
+            value: petclinic
+          - name: POSTGRES_PASSWORD
+            value: petclinic
+          image: postgres
+          imagePullPolicy: Always
+          name: postgresql
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    observedGeneration: 2
+    replicas: 0
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "2"
+    creationTimestamp: "2024-07-07T15:57:13Z"
+    generation: 1
+    labels:
+      app: postgresql
+      pod-template-hash: 5c555db5bd
+    name: postgresql-5c555db5bd
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: Deployment
+      name: postgresql
+      uid: 5112de42-0714-4520-b490-d42b2ea7d778
+    resourceVersion: "157842"
+    uid: bef445ed-aeaf-40b5-8d77-f8433bf9b5a2
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: postgresql
+        pod-template-hash: 5c555db5bd
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/restartedAt: "2024-07-07T15:57:13Z"
+        creationTimestamp: null
+        labels:
+          app: postgresql
+          pod-template-hash: 5c555db5bd
+      spec:
+        containers:
+        - env:
+          - name: POSTGRES_ROOT_PASSWORD
+            value: petclinic
+          - name: POSTGRES_DATABASE
+            value: petclinic
+          - name: POSTGRES_USER
+            value: petclinic
+          - name: POSTGRES_PASSWORD
+            value: petclinic
+          image: postgres
+          imagePullPolicy: Always
+          name: postgresql
+          ports:
+          - containerPort: 5432
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 250m
+              memory: 250Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    fullyLabeledReplicas: 1
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+kind: List
+metadata:
+  resourceVersion: ""
