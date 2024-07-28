@@ -8,7 +8,7 @@ COPY pom.xml ./
 RUN apt-get update && apt-get install -y openjdk-17-jdk
 RUN mvn install
 
-FROM builder as stage-2
+FROM builder AS stage-2
 
 WORKDIR /javaTask
 
