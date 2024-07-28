@@ -22,7 +22,7 @@ jobs:
         IMAGE_TAG=latest
         echo "Building and pushing image with tag $IMAGE_TAG"
         echo `pwd && ls`
-        docker build -t aysegulakbaas1/java-web-app .
+        docker build -t aysegulakbaas1/java-web-app --target stage-1 .
         docker image tag aysegulakbaas1/java-web-app aysegulakbaas1/java-web-app:$IMAGE_TAG
         docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
   deploy:
