@@ -3,7 +3,7 @@ FROM amazoncorretto:17 AS builder
 FROM builder AS stage-1
 
 ##WORKDIR /javaTask
-RUN apt-get update && apt-get install -y openjdk-17-jdk
+RUN apt-get update
 RUN mvn install
 
 FROM builder AS stage-2
