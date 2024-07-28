@@ -3,6 +3,9 @@ FROM maven:3.8.3-openjdk-17 AS builder
 FROM builder AS stage-1
 
 ##WORKDIR /javaTask
+COPY pom.xml .
+
+COPY src/ src/
 RUN mvn install
 
 FROM builder AS stage-2
