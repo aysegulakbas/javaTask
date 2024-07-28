@@ -1,4 +1,4 @@
-FROM openjdk:17-slim AS builder
+FROM amazoncorretto:17 AS builder
 
 FROM builder AS stage-1
 
