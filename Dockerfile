@@ -6,7 +6,7 @@ FROM builder AS stage-1
 COPY pom.xml .
 
 COPY src/ src/
-RUN mvn install
+RUN mvn clean install
 
 FROM builder AS stage-2
 
