@@ -1,1 +1,50 @@
 
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to Docker Hub
+      run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+    - name: Build and Push Docker image
+      run: |
+        IMAGE_TAG=latest
+        echo "Building and pushing image with tag $IMAGE_TAG"
+        docker build -t aysegulakbaas1/java-web-app .
+        docker image tag aysegulakbaas1/java-web-app aysegulakbaas1/java-web-app:$IMAGE_TAG
+        docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
+  deploy:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v1
+      with:
+        version: 'latest'
+
+    - name: Deploy to Kubernetes
+      env:
+        KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+      run: |
+        echo "${{ secrets.KUBE_CONFIG_DATA }}" | base64 --decode > $HOME/.kube/config
+        kubectl apply -f deployment.yaml
+        kubectl apply -f application-service.yaml
+        kubectl apply -f postgresql.yaml
+        kubectl apply -f postgresql-service.yaml
+        kubectl apply -f postgresql-config.yaml
+        kubectl apply -f postgresql-secret.yaml
