@@ -28,10 +28,10 @@ jobs:
         docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f Deployment/postgresql.yaml
-        kubectl apply -f Deployment/application.yaml
-        kubectl apply -f Deployment/application-service.yaml
-        kubectl apply -f Deployment/postgresql-service.yaml
-        kubectl apply -f Deployment/postgresql-config.yaml
-        kubectl apply -f Deployment/postgresql-secret.yaml
-        kubectl apply -f Deployment/pvc.yaml
+        kubectl apply -f ./Deployment/postgresql.yaml
+        kubectl apply -f ./Deployment/application.yaml
+        kubectl apply -f ./Deployment/application-service.yaml
+        kubectl apply -f ./Deployment/postgresql-service.yaml
+        kubectl apply -f ./Deployment/postgresql-config.yaml
+        kubectl apply -f ./Deployment/postgresql-secret.yaml
+        kubectl apply -f ./Deployment/pvc.yaml
