@@ -34,4 +34,4 @@ jobs:
         kubectl apply -f ./Deployment/postgresql-service.yaml
         kubectl apply -f ./Deployment/postgresql-config.yaml
         kubectl apply -f ./Deployment/postgresql-secret.yaml
-        kubectl apply -f ./Deployment/pvc.yaml
+        kubectl apply -f ./Deployment/postgresql-pvc.yaml
