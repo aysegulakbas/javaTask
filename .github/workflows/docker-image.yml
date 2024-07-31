@@ -26,6 +26,11 @@ jobs:
         docker image tag aysegulakbaas1/java-web-app aysegulakbaas1/java-web-app:$IMAGE_TAG
         docker images
         docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
+        
+  deploy:
+    runs-on: self-hosted
+    
+    steps:
     - name: Deploy to Kubernetes
       run: |
         kubectl apply -f ./Deployment/postgresql.yaml
