@@ -25,6 +25,8 @@ jobs:
         docker build -t aysegulakbaas1/java-web-app --target stage-2 .
         docker image tag aysegulakbaas1/java-web-app aysegulakbaas1/java-web-app:$IMAGE_TAG
         docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
+    - name: Deploy to Kubernetes
+      run: |
         kubectl apply -f postgresql.yaml
         kubectl apply -f postgresql-service.yaml
         kubectl apply -f postgresql-config.yaml
