@@ -19,7 +19,7 @@ jobs:
     - name: Build and Push Docker image
       run: |
         set -eux
-        IMAGE_TAG=123
+        IMAGE_TAG=latest
         echo "Building and pushing image with tag $IMAGE_TAG"
         echo `pwd && ls`
         docker build -t aysegulakbaas1/java-web-app --target stage-2 .
