@@ -24,6 +24,7 @@ jobs:
         echo `pwd && ls`
         docker build -t aysegulakbaas1/java-web-app --target stage-2 .
         docker image tag aysegulakbaas1/java-web-app aysegulakbaas1/java-web-app:$IMAGE_TAG
+        docker images
         docker push aysegulakbaas1/java-web-app:$IMAGE_TAG
     - name: Deploy to Kubernetes
       run: |
